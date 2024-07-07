@@ -9,6 +9,16 @@ export const projectSchema = z.object({
   description: z.string(),
 });
 
+//Esquema para APi en lista de proyectos, se busca sea un  []
+export const dashboardProjectSchema = z.array(
+  projectSchema.pick({
+    _id: true,
+    projectName: true,
+    clientName: true,
+    description: true,
+  })
+);
+
 export type Project = z.infer<typeof projectSchema>;
 export type ProjectFormData = Pick<
   Project,
